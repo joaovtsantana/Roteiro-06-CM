@@ -1,9 +1,17 @@
-import 'package:flutter/material.dart';
 
-import 'screens/pokemon_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/cart_provider.dart';
+import 'screens/store_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CartProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,16 +21,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Pokédex',
-
+      title: 'Carrinho de Compras',
       theme: ThemeData(
-        useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFE53935),
+          seedColor: Colors.blue,
         ),
+        useMaterial3: true,
       ),
-
-      home: const PokemonScreen(),
+      home: const StoreScreen(),
     );
   }
 }
